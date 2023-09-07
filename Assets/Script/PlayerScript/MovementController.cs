@@ -7,7 +7,7 @@ public class MovementController : MonoBehaviour
 {
     public float startingSpeed; 
     public float maximumSpeed; 
-    public float speedIncreaseAmount; 
+    private float speedIncreaseAmount = 3.0f; 
     public float currentSpeed;
 
     void Start()
@@ -19,7 +19,7 @@ public class MovementController : MonoBehaviour
     {
         if (currentSpeed < maximumSpeed)
         {
-            currentSpeed += speedIncreaseAmount * Time.deltaTime;
+            currentSpeed += speedIncreaseAmount  * Time.deltaTime;
         }
 
         Vector3 movement = new Vector3(currentSpeed, 0, 0);
