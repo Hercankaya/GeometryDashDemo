@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MenuButtonController : MonoBehaviour
 {
+    public GameObject Active;
+
     public void GoToNextScene()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
@@ -18,6 +20,17 @@ public class MenuButtonController : MonoBehaviour
         {
             Debug.LogError("Next scene not found!");
         }
+
     }
 
+    public void SettingPanelActive()
+    {
+        this.enabled = true;
+        Active.SetActive(true);
+    }
+    public void SettingPanelDeactive()
+    {
+        this.enabled = false;
+        Active.SetActive(false);
+    }
 }

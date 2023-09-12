@@ -9,7 +9,9 @@ public class RepawnController : MonoBehaviour
     private void Start()
     {
         StartPosition = transform.position;
-       
+        
+
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -22,6 +24,7 @@ public class RepawnController : MonoBehaviour
     }
     void Respawn()
     {
+        AudioManager.Instance.PlaySFX("DeathSound");
         transform.position = StartPosition;
     }
    
