@@ -22,7 +22,7 @@ public class RepawnController : MonoBehaviour
         }
 
     }
-    void Respawn()
+    public  void Respawn()
     {
         AudioManager.Instance.PlaySFX("DeathSound");
         transform.position = StartPosition;

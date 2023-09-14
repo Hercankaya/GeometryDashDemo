@@ -4,24 +4,53 @@ using UnityEngine;
 
 public class GravityController : MonoBehaviour
 {
-    public float jumpForce = 10f;
 
+    public float minY; 
+    public float maxY; 
+    [SerializeField] float jumpHeight = 5;
+    [SerializeField] float gravityScale = 5;
+    [SerializeField] float verticalmovementSpeed ;
+    
+    
     private void Update()
     {
         
-        if (Input.GetMouseButtonDown(0))
-        {
-            Jump();
-        }
+            if (Input.GetMouseButton(0))
+            {
+                
+                PlayerPositionUp();
+
+            }
+            else
+            {
+
+            PlayerPositionDown();
+
+            }                
+
+    }
+    
+
+    
+    void PlayerPositionUp()
+    {
+        
+        Vector2 position = transform.position + (Time.deltaTime * verticalmovementSpeed * Vector3.up);
+
+        position.y = Mathf.Clamp(position.y, minY, maxY);
+        
+        transform.position = position;
+    }
+    void PlayerPositionDown()
+    {
+
+        Vector2 position = transform.position + (Time.deltaTime * verticalmovementSpeed * Vector3.down);
+
+        position.y = Mathf.Clamp(position.y, minY, maxY);
+
+        transform.position = position;
     }
 
-    private void Jump()
-    {
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        if (rb != null)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        }
-    }
+
 
 }
