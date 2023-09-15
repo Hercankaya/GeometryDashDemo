@@ -8,8 +8,7 @@ public class AudioManager : MonoBehaviour
     public Sound[] music, sfx;
     public AudioSource musicSource, sfxSource;
     public static AudioManager Instance;
-
-    
+ 
     private void Awake()
     {
         if(Instance == null)

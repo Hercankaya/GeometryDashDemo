@@ -1,18 +1,14 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameController : MonoBehaviour
+public class GameUIController : MonoBehaviour
 {
     public GameObject active;
-
-
-     public void PauseButton()
+    public void PauseButton()
     {
         active.SetActive(true);
         Time.timeScale = 0f;
-        
-
     }
     public void BackToGame()
     {
