@@ -5,7 +5,9 @@ using UnityEngine;
 public class PortalController : MonoBehaviour
 {
     public GameObject objectToActivate;
+    public GameObject cameraToActivate;
     public GameObject objectToDeactivate;
+    public GameObject cameraToDeactivate;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -14,9 +16,11 @@ public class PortalController : MonoBehaviour
         {
             this.enabled = true;
             objectToActivate.SetActive(true);
+            cameraToActivate.SetActive(true);
 
             this.enabled = false;  
             objectToDeactivate.SetActive(false);
+            cameraToDeactivate.SetActive(false);
         }
     }
 
