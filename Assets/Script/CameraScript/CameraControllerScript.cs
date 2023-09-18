@@ -6,6 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class CameraControllerScript : MonoBehaviour
 {
+   
     public Transform PlayerTarget;
     
     public float smoothSpeed;
@@ -24,6 +25,6 @@ public class CameraControllerScript : MonoBehaviour
         transform.position = new Vector3(smoothedXPosition, transform.position.y, transform.position.z);
  
     }
-
+    
 }
 
