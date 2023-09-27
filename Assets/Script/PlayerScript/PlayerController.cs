@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     {
         transform.position += Vector3.right * SpeedValues[(int)CurrentSpeed] * Time.deltaTime;
     }
-    /// 
+    
    
    
     void Jump()
@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
     {
         return Physics2D.OverlapCircle(GroundCheckTransform.position, GroundCheckRadius, GroundMask);
     }
-    ///
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Obstacle"))
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
             AudioManager.Instance.PlaySFX("DeathSound");
             Respawn();
         }
-
+        
     }
 
     public void Respawn()
@@ -74,5 +74,8 @@ public class PlayerController : MonoBehaviour
        
         transform.position = StartPosition;
     }
-    ///
+
+
+  
+
 }

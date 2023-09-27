@@ -1,6 +1,7 @@
  using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameUIController : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class GameUIController : MonoBehaviour
     {
         active.SetActive(true);
         Time.timeScale = 0f;
+
+        
     }
     public void BackToGame()
     {
@@ -16,4 +19,5 @@ public class GameUIController : MonoBehaviour
         Time.timeScale = 1f;
 
     }
+
 }

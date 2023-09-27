@@ -8,7 +8,7 @@ public class PlayerShipController : MonoBehaviour
     public float MinY;
     public float MaxY;
     [SerializeField] float JumpHeight = 5;
-    [SerializeField] float gravityScale = 5;
+    //[SerializeField] float gravityScale = 5;
     [SerializeField] float VerticalMovementSpeed;
     public Vector2 StartPosition;
 
@@ -26,7 +26,7 @@ public class PlayerShipController : MonoBehaviour
         Gravity();
     }
 
-     void Gravity()
+     public void Gravity()
     {
 
         if (Input.GetMouseButton(0))
@@ -62,6 +62,10 @@ public class PlayerShipController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Ground"))
+        {
+            Respawn();
+        }
+        if (collision.CompareTag("Obstacle"))
         {
             Respawn();
         }
