@@ -6,8 +6,8 @@ using System;
 public class AudioManager : MonoBehaviour
 {
     
-    public Sound[] music, sfx ,menu;
-    public AudioSource musicSource, sfxSource ,menuSource;
+    public Sound[] music, sfx ;
+    public AudioSource musicSource, sfxSource ;
     public static AudioManager Instance;
  
     private void Awake()
@@ -57,20 +57,6 @@ public class AudioManager : MonoBehaviour
             sfxSource.PlayOneShot(s.clip);
         }
     }
-    public void MenuMusic(string name)
-    {
-
-        Sound s = Array.Find(menu, x => x.name == name);
-
-        if (s == null)
-        {
-            Debug.Log("Sound not found");
-        }
-        else
-        {
-            sfxSource.PlayOneShot(s.clip);
-        }
-    }
     public void ToggleMusic()
     {
         musicSource.mute = !musicSource.mute;
@@ -79,9 +65,6 @@ public class AudioManager : MonoBehaviour
     {
         sfxSource.mute = !sfxSource.mute;
     }
-    public void ToogleMenu()
-    {
-        sfxSource.mute = !sfxSource.mute;
-    }
+
     
 }
