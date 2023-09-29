@@ -1,23 +1,23 @@
 using UnityEngine;
 
 
-public class PlayerHorizontalMovements : PlayerBaseState
+public class PlayerCubeMovementState : PlayerBaseState
 {
-    public override void EnterState(PlayerStateManager state)
+    public override void EnterState(PlayerController state)
     {
         Debug.Log("PlayerHorizontal baþlatýldý.");
         stateManager = state;
-    }
-    public override void UpdateState(PlayerStateManager state)
-    {
-        Debug.Log("PlayerHorizontal çalýþmaya devam ediyor");
-
         stateManager.rb.gravityScale = 15f;
+    }
+    public override void UpdateState(PlayerController state)
+    {
+       Debug.Log("PlayerHorizontal çalýþmaya devam ediyor");
+
         HorizontalMovement();
         Jump();
     }
 
-    public override void ExitState(PlayerStateManager state)
+    public override void ExitState(PlayerController state)
     {
         Debug.Log("PlayerHorizontal çalýþmayý bitirdi");
     }
@@ -26,6 +26,7 @@ public class PlayerHorizontalMovements : PlayerBaseState
     {
         if (collision.gameObject.CompareTag("Portal"))
         {
+           
             stateManager.currentState.ExitState(stateManager);
             stateManager.currentState = stateManager.VerticalState;
             stateManager.currentState.EnterState(stateManager);

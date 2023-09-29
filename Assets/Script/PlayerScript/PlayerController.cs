@@ -5,11 +5,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public enum Speeds { Slow = 0, Normal = 1, Fast = 2 }
-public class PlayerStateManager : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {   //State Machine deðiþkenleri
     public PlayerBaseState currentState;
-    public PlayerVerticalMovement VerticalState = new PlayerVerticalMovement();
-    public PlayerHorizontalMovements HorizontalState = new PlayerHorizontalMovements();
+    public PlayerShipMovementState VerticalState = new PlayerShipMovementState();
+    public PlayerCubeMovementState HorizontalState = new PlayerCubeMovementState();
    
     public float MinY = 0;
     public float MaxY = 1.50f;

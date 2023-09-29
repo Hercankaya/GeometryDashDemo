@@ -348,7 +348,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &527723139
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -435,7 +435,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 527723138}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 29.89285, y: -2.9819238, z: 0.07020672}
+  m_LocalPosition: {x: 30.5, y: -2.9819238, z: 0.07020672}
   m_LocalScale: {x: 31.203783, y: 0.2875, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -701,7 +701,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &874067673
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1216,7 +1216,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1927665621
 Transform:
   m_ObjectHideFlags: 0
@@ -1610,11 +1610,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5696718708324508083, guid: 957e7eb83d8ae6e42b1c0194667fe606, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.54
+      value: 20.02
       objectReference: {fileID: 0}
     - target: {fileID: 5696718708324508083, guid: 957e7eb83d8ae6e42b1c0194667fe606, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 4.16
       objectReference: {fileID: 0}
     - target: {fileID: 5696718708324508083, guid: 957e7eb83d8ae6e42b1c0194667fe606, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1722,11 +1722,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7164475118544406261, guid: 957e7eb83d8ae6e42b1c0194667fe606, type: 3}
       propertyPath: VerticalRespawnStartPosition.x
-      value: 19.56
+      value: 20.02
       objectReference: {fileID: 0}
     - target: {fileID: 7164475118544406261, guid: 957e7eb83d8ae6e42b1c0194667fe606, type: 3}
       propertyPath: VerticalRespawnStartPosition.y
-      value: 3.5
+      value: 4.16
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5696718708324508080, guid: 957e7eb83d8ae6e42b1c0194667fe606, type: 3}

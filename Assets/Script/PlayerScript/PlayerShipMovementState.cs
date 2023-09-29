@@ -1,27 +1,27 @@
 using UnityEngine;
 
 
-public class PlayerVerticalMovement : PlayerBaseState
+public class PlayerShipMovementState : PlayerBaseState
 {
-    public override void EnterState(PlayerStateManager state)
+    public override void EnterState(PlayerController state)
     {
         stateManager = state;
-
+        stateManager.rb.gravityScale = 0;
+     
         Debug.Log("PlayerVertical baþlatýldý.");
 
     }
-    public override void UpdateState(PlayerStateManager state)
+    public override void UpdateState(PlayerController state)
     {
-
-
-        stateManager.rb.gravityScale = 0;
+        Debug.Log("Player Vertical çalýþmaya devam ediyor");
         VerticalMovement();
         Gravity();
+        
 
 
     }
 
-    public override void ExitState(PlayerStateManager state)
+    public override void ExitState(PlayerController state)
     {
         Debug.Log("PlayerVertical çalýþmayý bitirdi.");
     }
@@ -32,7 +32,7 @@ public class PlayerVerticalMovement : PlayerBaseState
         if (collision.gameObject.CompareTag("Portal"))
         {
 
-
+            
             stateManager.currentState.ExitState(stateManager);
             stateManager.currentState = stateManager.HorizontalState;
             stateManager.currentState.EnterState(stateManager);
@@ -47,7 +47,8 @@ public class PlayerVerticalMovement : PlayerBaseState
     }
     void VerticalMovement()
     {
-        stateManager.transform.position += Vector3.right * stateManager.VerticalMovementSpeed * Time.deltaTime;
+         //stateManager.transform.position += Vector3.right * stateManager.SpeedValues[(int)stateManager.CurrentSpeed] * Time.deltaTime;
+         stateManager.transform.position += Vector3.right * stateManager.VerticalMovementSpeed * Time.deltaTime;
     }
 
     public void Gravity()
