@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
 public enum Speeds { Slow = 0, Normal = 1, Fast = 2 }
 public class PlayerController : MonoBehaviour
-{   //State Machine deðiþkenleri
+{   
     public PlayerBaseState currentState;
     public PlayerShipMovementState VerticalState = new PlayerShipMovementState();
     public PlayerCubeMovementState HorizontalState = new PlayerCubeMovementState();
@@ -30,23 +32,67 @@ public class PlayerController : MonoBehaviour
     public Vector2 VerticalRespawnStartPosition;
 
 
-    void Start()
+   private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         currentState = HorizontalState;
         currentState.EnterState(this);
     }
 
-    void Update()
+    private void Update()
     {
         currentState.UpdateState(this);
     }
 
-    
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        currentState.OnTriggerEnter2D(collision);
-
+        if (collision.gameObject.CompareTag("LoginPortal"))
+        {
+            currentState.ExitState(this);
+            currentState = VerticalState;
+            currentState.EnterState(this);
+        }
+        else if (collision.gameObject.CompareTag("ExitPortal"))
+        {
+            currentState.ExitState(this);
+            currentState = HorizontalState;
+            currentState.EnterState(this);
+        }
+        else if (collision.gameObject.CompareTag("HorizontalObstacle"))
+        {
+            HandleHorizontalObstacleCollision();
+        }
+        else if (collision.gameObject.CompareTag("VerticalGround") || collision.gameObject.CompareTag("VerticalObstacle"))
+        {
+            HandleVerticalCollision();
+        }
     }
 
+    private void HandleHorizontalObstacleCollision()
+    {
+        HorizontalRespawn();
+        PlayDeathSound();
+    }
+
+    private void HandleVerticalCollision()
+    {
+        PlayDeathSound();
+        VerticalRespawn();
+    }
+
+
+    private void PlayDeathSound()
+    {
+        AudioManager.Instance.PlaySFX("DeathSound");
+    }
+
+    private void HorizontalRespawn()
+    {
+        transform.position = RespawnStartPosition;
+    }
+    private void VerticalRespawn()
+    {
+       transform.position = VerticalRespawnStartPosition;
+    }
+   
 }

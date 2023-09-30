@@ -8,6 +8,10 @@ TagManager:
   - Obstacle
   - Portal
   - VerticalObstacle
+  - LoginPortal
+  - ExitPortal
+  - VerticalGround
+  - HorizontalObstacle
   layers:
   - Default
   - TransparentFX
