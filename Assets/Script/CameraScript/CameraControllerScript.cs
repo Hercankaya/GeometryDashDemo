@@ -8,11 +8,9 @@ public class CameraControllerScript : MonoBehaviour
 {
    
     public Transform PlayerTarget;
-    
-    public float smoothSpeed;
+    public float SmoothSpeed;
     void LateUpdate()
     {
-       
         if (PlayerTarget == null)
         {
             return;
@@ -20,8 +18,7 @@ public class CameraControllerScript : MonoBehaviour
 
         float desiredXPosition = PlayerTarget.position.x;
         float currentXPosition = transform.position.x;
-        float smoothedXPosition = Mathf.Lerp(currentXPosition, desiredXPosition, smoothSpeed);
-
+        float smoothedXPosition = Mathf.Lerp(currentXPosition, desiredXPosition, SmoothSpeed);
         transform.position = new Vector3(smoothedXPosition, transform.position.y, transform.position.z);
  
     }

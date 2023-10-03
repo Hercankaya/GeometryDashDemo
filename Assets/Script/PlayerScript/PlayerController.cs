@@ -9,75 +9,60 @@ using UnityEngine;
 public enum Speeds { Slow = 0, Normal = 1, Fast = 2 }
 public class PlayerController : MonoBehaviour
 {   
-    public PlayerBaseState currentState;
-    public PlayerShipMovementState VerticalState = new PlayerShipMovementState();
-    public PlayerCubeMovementState HorizontalState = new PlayerCubeMovementState();
-   
+    public PlayerBaseState CurrentState;
+    public PlayerShipMovementState ShipMovementState = new PlayerShipMovementState();
+    public PlayerCubeMovementState CubeMovementState = new PlayerCubeMovementState();
     public float MinY = 0;
     public float MaxY = 1.50f;
     public float JumpHeight = 3.0f;
-    public float VerticalMovementSpeed = 3.0f;
-    
+    public float ShipMovementSpeed = 3.0f;
     public float[] SpeedValues = { 5.0f, 10.0f, 15.0f };
     public Speeds CurrentSpeed;
-
     public Transform GroundCheckTransform;
     public float GroundCheckRadius;
     public LayerMask GroundMask;
-    public Rigidbody2D rb;
+    public Rigidbody2D Rigidbody;
     public Transform Sprite;
-    
-    public Transform playerTransform;
-    public Vector2 RespawnStartPosition;
-    public Vector2 VerticalRespawnStartPosition;
+    public Vector2 CubeRespawnStartPosition;
+    public Vector2 ShipRespawnStartPosition;
 
 
    private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        currentState = HorizontalState;
-        currentState.EnterState(this);
+        Rigidbody = GetComponent<Rigidbody2D>();
+        CubeMovementState.DestroyedEvent += OnCubeDestroyed;
+        ShipMovementState.DestroyedEvent += OnShipDestroyed;
+        CurrentState = CubeMovementState;
+        CurrentState.EnterState(this);
     }
 
+    private void OnDisable()
+    {
+        CubeMovementState.DestroyedEvent -= OnCubeDestroyed;
+        ShipMovementState.DestroyedEvent -= OnShipDestroyed;
+    }
+    
     private void Update()
     {
-        currentState.UpdateState(this);
+        CurrentState.UpdateState(this);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("LoginPortal"))
         {
-            currentState.ExitState(this);
-            currentState = VerticalState;
-            currentState.EnterState(this);
+            CurrentState.ExitState(this);
+            CurrentState = ShipMovementState;
+            CurrentState.EnterState(this);
         }
         else if (collision.gameObject.CompareTag("ExitPortal"))
         {
-            currentState.ExitState(this);
-            currentState = HorizontalState;
-            currentState.EnterState(this);
+            CurrentState.ExitState(this);
+            CurrentState = CubeMovementState;
+            CurrentState.EnterState(this);
         }
-        else if (collision.gameObject.CompareTag("HorizontalObstacle"))
-        {
-            HandleHorizontalObstacleCollision();
-        }
-        else if (collision.gameObject.CompareTag("VerticalGround") || collision.gameObject.CompareTag("VerticalObstacle"))
-        {
-            HandleVerticalCollision();
-        }
-    }
 
-    private void HandleHorizontalObstacleCollision()
-    {
-        HorizontalRespawn();
-        PlayDeathSound();
-    }
-
-    private void HandleVerticalCollision()
-    {
-        PlayDeathSound();
-        VerticalRespawn();
+        CurrentState.OnTriggerEnter2D(collision);
     }
 
 
@@ -86,13 +71,16 @@ public class PlayerController : MonoBehaviour
         AudioManager.Instance.PlaySFX("DeathSound");
     }
 
-    private void HorizontalRespawn()
+    private void OnCubeDestroyed(object sender, EventArgs e)
     {
-        transform.position = RespawnStartPosition;
+        PlayDeathSound();
+        CubeMovementState.CubeRespawn();
     }
-    private void VerticalRespawn()
+
+    private void OnShipDestroyed(object sender ,EventArgs e)
     {
-       transform.position = VerticalRespawnStartPosition;
+        PlayDeathSound();
+        ShipMovementState.ShipRespawn();
+
     }
-   
 }

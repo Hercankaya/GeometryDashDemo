@@ -29,13 +29,9 @@ public class GameUIController : MonoBehaviour
 
         if (progress >= 0.999f)
         {
-            _PauseGame();
-
+            PauseGame();
         }
     }
-
-
-
     private void PauseButton()
     {
         if (PausePanel != null)
@@ -61,7 +57,7 @@ public class GameUIController : MonoBehaviour
             Debug.LogWarning("Pause Menu is not assigned!");
         }
     }
-    private void _PauseGame()
+    private void PauseGame()
     {
         Time.timeScale = 0f;
     }

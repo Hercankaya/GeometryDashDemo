@@ -1,10 +1,15 @@
+using System;
 using UnityEngine;
 
 public abstract class PlayerBaseState
 {
-    protected PlayerController stateManager;
+    public  EventHandler DestroyedEvent;
 
-    public abstract void EnterState(PlayerController state);
-    public abstract void UpdateState(PlayerController state);
-    public abstract void ExitState(PlayerController state);
+    protected PlayerController _playerController;
+
+    public abstract void EnterState(PlayerController playerController);
+    public abstract void UpdateState(PlayerController playerController);
+    public abstract void ExitState(PlayerController playerController);
+
+    public abstract void OnTriggerEnter2D(Collider2D collision);
 }

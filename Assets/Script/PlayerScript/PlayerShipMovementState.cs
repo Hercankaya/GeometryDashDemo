@@ -1,11 +1,13 @@
+using System;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class PlayerShipMovementState : PlayerBaseState
 {
     public override void EnterState(PlayerController state)
     {
-        stateManager = state;
-        stateManager.rb.gravityScale = 0;
+        _playerController = state;
+        _playerController.Rigidbody.gravityScale = 0;
     }
 
     public override void UpdateState(PlayerController state)
@@ -16,12 +18,12 @@ public class PlayerShipMovementState : PlayerBaseState
 
     public override void ExitState(PlayerController state)
     {
-        // Çýkýþ 
+
     }
 
     private void VerticalMovement()
     {
-        stateManager.transform.position += Vector3.right * stateManager.VerticalMovementSpeed * Time.deltaTime;
+        _playerController.transform.position += Vector3.right * _playerController.ShipMovementSpeed * Time.deltaTime;
     }
 
     private void Gravity()
@@ -38,15 +40,30 @@ public class PlayerShipMovementState : PlayerBaseState
 
     private void PlayerPositionUp()
     {
-        Vector2 position = stateManager.transform.position + (Time.deltaTime * stateManager.VerticalMovementSpeed * (Vector3.up * stateManager.JumpHeight));
-        position.y = Mathf.Clamp(position.y, stateManager.MinY, stateManager.MaxY);
-        stateManager.transform.position = position;
+        Vector2 position = _playerController.transform.position + (Time.deltaTime * _playerController.ShipMovementSpeed * (Vector3.up * _playerController.JumpHeight));
+        position.y = Mathf.Clamp(position.y, _playerController.MinY, _playerController.MaxY);
+        _playerController.transform.position = position;
     }
 
     private void PlayerPositionDown()
     {
-        Vector2 position = stateManager.transform.position + (Time.deltaTime * stateManager.VerticalMovementSpeed * (Vector3.down));
-        position.y = Mathf.Clamp(position.y, stateManager.MinY, stateManager.MaxY);
-        stateManager.transform.position = position;
+        Vector2 position = _playerController.transform.position + (Time.deltaTime * _playerController.ShipMovementSpeed * (Vector3.down));
+        position.y = Mathf.Clamp(position.y, _playerController.MinY, _playerController.MaxY);
+        _playerController.transform.position = position;
     }
+
+    public override void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("ShipObstacle") || collision.gameObject.CompareTag("ShipGround"))
+        {
+            DestroyedEvent?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
+    public void ShipRespawn()
+    {
+        _playerController.transform.position = _playerController.ShipRespawnStartPosition;
+    }
+
+
 }

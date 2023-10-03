@@ -7,11 +7,11 @@ TagManager:
   - Ground
   - Obstacle
   - Portal
-  - VerticalObstacle
   - LoginPortal
   - ExitPortal
-  - VerticalGround
-  - HorizontalObstacle
+  - ShipObstacle
+  - CubeObstacle
+  - ShipGround
   layers:
   - Default
   - TransparentFX
