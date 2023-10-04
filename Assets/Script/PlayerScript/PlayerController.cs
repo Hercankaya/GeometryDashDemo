@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
     public float ShipMovementSpeed = 3.0f;
     public float[] SpeedValues = { 5.0f, 10.0f, 15.0f };
     public Speeds CurrentSpeed;
-    public Transform GroundCheckTransform;
     public float GroundCheckRadius;
     public LayerMask GroundMask;
     public Rigidbody2D Rigidbody;

@@ -4,7 +4,6 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class PlayerCubeMovementState : PlayerBaseState
 {
-    
     public override void EnterState(PlayerController state)
     {
         _playerController = state;
@@ -46,11 +45,17 @@ public class PlayerCubeMovementState : PlayerBaseState
             _playerController.Sprite.Rotate(Vector3.back * 450 * Time.deltaTime);
         }
     }
-
+    
     private bool OnGround()
     {
-        return Physics2D.OverlapCircle(_playerController.GroundCheckTransform.position, _playerController.GroundCheckRadius, _playerController.GroundMask);
+        
+        float boxHeight = _playerController.transform.localScale.y;
+        Vector3 boxCenter = _playerController.transform.position + Vector3.down * (boxHeight * 0.5f);
+        Vector2 boxSize = new Vector2(1.1f, _playerController.GroundCheckRadius * 2);
+        return Physics2D.OverlapBox(boxCenter, boxSize, 0, _playerController.GroundMask);
     }
+
+
 
     public override void OnTriggerEnter2D(Collider2D collision)
     {

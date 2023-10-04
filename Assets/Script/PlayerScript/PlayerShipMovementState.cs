@@ -12,8 +12,8 @@ public class PlayerShipMovementState : PlayerBaseState
 
     public override void UpdateState(PlayerController state)
     {
-        VerticalMovement();
-        Gravity();
+        ShipMovement();
+        ShipMovementMaouseControl();
     }
 
     public override void ExitState(PlayerController state)
@@ -21,31 +21,31 @@ public class PlayerShipMovementState : PlayerBaseState
 
     }
 
-    private void VerticalMovement()
+    private void ShipMovement()
     {
         _playerController.transform.position += Vector3.right * _playerController.ShipMovementSpeed * Time.deltaTime;
     }
 
-    private void Gravity()
+    private void ShipMovementMaouseControl()
     {
         if (Input.GetMouseButton(0))
         {
-            PlayerPositionUp();
+            ShipPositionUp();
         }
         else
         {
-            PlayerPositionDown();
+            ShipPositionDown();
         }
     }
 
-    private void PlayerPositionUp()
+    private void ShipPositionUp()
     {
         Vector2 position = _playerController.transform.position + (Time.deltaTime * _playerController.ShipMovementSpeed * (Vector3.up * _playerController.JumpHeight));
         position.y = Mathf.Clamp(position.y, _playerController.MinY, _playerController.MaxY);
         _playerController.transform.position = position;
     }
 
-    private void PlayerPositionDown()
+    private void ShipPositionDown()
     {
         Vector2 position = _playerController.transform.position + (Time.deltaTime * _playerController.ShipMovementSpeed * (Vector3.down));
         position.y = Mathf.Clamp(position.y, _playerController.MinY, _playerController.MaxY);

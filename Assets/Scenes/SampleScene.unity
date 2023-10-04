@@ -1027,11 +1027,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &629196938 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5696718709126311134, guid: 957e7eb83d8ae6e42b1c0194667fe606, type: 3}
-  m_PrefabInstance: {fileID: 5696718708599459164}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &694641852
 GameObject:
   m_ObjectHideFlags: 0
@@ -2731,6 +2726,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 5696718709126311133, guid: 957e7eb83d8ae6e42b1c0194667fe606, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5696718709153205952, guid: 957e7eb83d8ae6e42b1c0194667fe606, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -2802,7 +2801,7 @@ PrefabInstance:
     - target: {fileID: 7164475118544406261, guid: 957e7eb83d8ae6e42b1c0194667fe606, type: 3}
       propertyPath: GroundCheckTransform
       value: 
-      objectReference: {fileID: 629196938}
+      objectReference: {fileID: 0}
     - target: {fileID: 7164475118544406261, guid: 957e7eb83d8ae6e42b1c0194667fe606, type: 3}
       propertyPath: VerticalMovementSpeed
       value: 3
