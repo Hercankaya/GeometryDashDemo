@@ -25,15 +25,24 @@ public class PlayerController : MonoBehaviour
     public Transform Sprite;
     public Vector2 CubeRespawnStartPosition;
     public Vector2 ShipRespawnStartPosition;
+    private bool _changeSprite = false;
+    private SpriteRenderer _spriteRenderer ;
+    private Sprite _playerCubeSprite, _playerShipSprite;
 
 
-   private void Start()
+    private void Start()
     {
         Rigidbody = GetComponent<Rigidbody2D>();
         CubeMovementState.DestroyedEvent += OnCubeDestroyed;
         ShipMovementState.DestroyedEvent += OnShipDestroyed;
         CurrentState = CubeMovementState;
         CurrentState.EnterState(this);
+
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _playerCubeSprite = Resources.Load<Sprite>("Sprites/CubePlayerSprite");
+        _playerShipSprite = Resources.Load<Sprite>("Sprites/ShipPlayerSprite");
+        _spriteRenderer.sprite = _playerCubeSprite;
+
     }
 
     private void OnDisable()
@@ -54,12 +63,18 @@ public class PlayerController : MonoBehaviour
             CurrentState.ExitState(this);
             CurrentState = ShipMovementState;
             CurrentState.EnterState(this);
+            _changeSprite = true;
+            ChangeSprite();
+
+
         }
         else if (collision.gameObject.CompareTag("ExitPortal"))
         {
             CurrentState.ExitState(this);
             CurrentState = CubeMovementState;
             CurrentState.EnterState(this);
+            _changeSprite = false;
+            ChangeSprite();
         }
 
         CurrentState.OnTriggerEnter2D(collision);
@@ -83,4 +98,18 @@ public class PlayerController : MonoBehaviour
         ShipMovementState.ShipRespawn();
 
     }
+
+    private void ChangeSprite()
+    {
+        if(_changeSprite == true)
+        {
+            _spriteRenderer.sprite = _playerShipSprite;
+        }
+        else if (_changeSprite==false)
+        {
+            _spriteRenderer.sprite = _playerCubeSprite;
+        }
+    }
+
+
 }
