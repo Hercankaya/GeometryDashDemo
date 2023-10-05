@@ -8,6 +8,7 @@ public class PlayerShipMovementState : PlayerBaseState
     {
         _playerController = state;
         _playerController.Rigidbody.gravityScale = 0;
+       
     }
 
     public override void UpdateState(PlayerController state)
@@ -24,6 +25,7 @@ public class PlayerShipMovementState : PlayerBaseState
     private void ShipMovement()
     {
         _playerController.transform.position += Vector3.right * _playerController.ShipMovementSpeed * Time.deltaTime;
+        
     }
 
     private void ShipMovementMaouseControl()

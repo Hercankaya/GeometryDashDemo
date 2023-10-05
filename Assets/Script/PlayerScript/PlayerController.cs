@@ -25,7 +25,8 @@ public class PlayerController : MonoBehaviour
     public Vector2 CubeRespawnStartPosition;
     public Vector2 ShipRespawnStartPosition;
     private bool _changeSprite = false;
-    private SpriteRenderer _spriteRenderer ;
+    private Vector3 _firstSpriteScaleValue;
+    private SpriteRenderer _spriteRenderer;
     private Sprite _playerCubeSprite, _playerShipSprite;
 
 
@@ -64,6 +65,8 @@ public class PlayerController : MonoBehaviour
             CurrentState.EnterState(this);
             _changeSprite = true;
             ChangeSprite();
+            
+
 
 
         }
@@ -98,14 +101,19 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    
     private void ChangeSprite()
     {
         if(_changeSprite == true)
         {
+            _firstSpriteScaleValue = _spriteRenderer.transform.localScale;
             _spriteRenderer.sprite = _playerShipSprite;
+            _spriteRenderer.transform.localScale *= 0.5f;
+            
         }
         else if (_changeSprite==false)
         {
+            _spriteRenderer.transform.localScale = _firstSpriteScaleValue;
             _spriteRenderer.sprite = _playerCubeSprite;
         }
     }
