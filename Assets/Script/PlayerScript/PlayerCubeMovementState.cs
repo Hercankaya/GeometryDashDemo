@@ -7,12 +7,12 @@ public class PlayerCubeMovementState : PlayerBaseState
     public override void EnterState(PlayerController state)
     {
         _playerController = state;
-        _playerController.Rigidbody.gravityScale = 15f;
+        _playerController.Rigidbody.gravityScale = 10; 
     }
 
     public override void UpdateState(PlayerController state)
     {
-        HorizontalMovement();
+        CubeMovement();
         Jump();
     }
 
@@ -21,7 +21,7 @@ public class PlayerCubeMovementState : PlayerBaseState
       
     }
 
-    private void HorizontalMovement()
+    private void CubeMovement()
     {
         _playerController.transform.position += Vector3.right * _playerController.SpeedValues[(int)_playerController.CurrentSpeed] * Time.deltaTime;
     }
@@ -42,13 +42,12 @@ public class PlayerCubeMovementState : PlayerBaseState
         }
         else
         {
-            _playerController.Sprite.Rotate(Vector3.back * 450 * Time.deltaTime);
+            _playerController.Sprite.Rotate(Vector3.back * 250* Time.deltaTime);
         }
     }
     
     private bool OnGround()
     {
-        
         float boxHeight = _playerController.transform.localScale.y;
         Vector3 boxCenter = _playerController.transform.position + Vector3.down * (boxHeight * 0.5f);
         Vector2 boxSize = new Vector2(1.1f, _playerController.GroundCheckRadius * 2);

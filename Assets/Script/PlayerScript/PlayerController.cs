@@ -33,27 +33,26 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         Rigidbody = GetComponent<Rigidbody2D>();
-        CubeMovementState.DestroyedEvent += OnCubeDestroyed;
-        ShipMovementState.DestroyedEvent += OnShipDestroyed;
         CurrentState = CubeMovementState;
         CurrentState.EnterState(this);
-
-        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        _playerCubeSprite = Resources.Load<Sprite>("Sprites/CubePlayerSprite");
-        _playerShipSprite = Resources.Load<Sprite>("Sprites/ShipPlayerSprite");
-        _spriteRenderer.sprite = _playerCubeSprite;
+        EventsOnPlayerDestroyed();
+        SpriteOperations();
 
     }
+    private void Update()
+    {
+        CurrentState.UpdateState(this);
+    }
 
+    private void EventsOnPlayerDestroyed()
+    {
+        CubeMovementState.DestroyedEvent += OnCubeDestroyed;
+        ShipMovementState.DestroyedEvent += OnShipDestroyed;
+    }
     private void OnDisable()
     {
         CubeMovementState.DestroyedEvent -= OnCubeDestroyed;
         ShipMovementState.DestroyedEvent -= OnShipDestroyed;
-    }
-    
-    private void Update()
-    {
-        CurrentState.UpdateState(this);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -65,9 +64,6 @@ public class PlayerController : MonoBehaviour
             CurrentState.EnterState(this);
             _changeSprite = true;
             ChangeSprite();
-            
-
-
 
         }
         else if (collision.gameObject.CompareTag("ExitPortal"))
@@ -101,6 +97,16 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void SpriteOperations()
+    {
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _playerCubeSprite = Resources.Load<Sprite>("Sprites/CubePlayerSprite");
+        _playerShipSprite = Resources.Load<Sprite>("Sprites/ShipPlayerSprite");
+        _spriteRenderer.sprite = _playerCubeSprite;
+
+    }
+
+
     
     private void ChangeSprite()
     {
@@ -109,6 +115,7 @@ public class PlayerController : MonoBehaviour
             _firstSpriteScaleValue = _spriteRenderer.transform.localScale;
             _spriteRenderer.sprite = _playerShipSprite;
             _spriteRenderer.transform.localScale *= 0.5f;
+            
             
         }
         else if (_changeSprite==false)

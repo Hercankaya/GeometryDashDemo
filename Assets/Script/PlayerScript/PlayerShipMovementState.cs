@@ -40,18 +40,23 @@ public class PlayerShipMovementState : PlayerBaseState
         }
     }
 
-    private void ShipPositionUp()
+    private void MoveShip(Vector3 direction)
     {
-        Vector2 position = _playerController.transform.position + (Time.deltaTime * _playerController.ShipMovementSpeed * (Vector3.up * _playerController.JumpHeight));
+        Vector2 position = _playerController.transform.position + (Time.deltaTime * _playerController.ShipMovementSpeed * direction);
         position.y = Mathf.Clamp(position.y, _playerController.MinY, _playerController.MaxY);
         _playerController.transform.position = position;
     }
 
+    private void ShipPositionUp()
+    {
+        Vector3 upDirection = Vector3.up * _playerController.JumpHeight;
+        MoveShip(upDirection);
+    }
+
     private void ShipPositionDown()
     {
-        Vector2 position = _playerController.transform.position + (Time.deltaTime * _playerController.ShipMovementSpeed * (Vector3.down));
-        position.y = Mathf.Clamp(position.y, _playerController.MinY, _playerController.MaxY);
-        _playerController.transform.position = position;
+        Vector3 downDirection = Vector3.down;
+        MoveShip(downDirection);
     }
 
     public override void OnTriggerEnter2D(Collider2D collision)
