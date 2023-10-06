@@ -7,9 +7,8 @@ public class PlayerCubeMovementState : PlayerBaseState
     public override void EnterState(PlayerController state)
     {
         _playerController = state;
-        _playerController.Rigidbody.gravityScale = 10; 
+        _playerController.Rigidbody.gravityScale = 15; 
     }
-
     public override void UpdateState(PlayerController state)
     {
         CubeMovement();
@@ -20,32 +19,31 @@ public class PlayerCubeMovementState : PlayerBaseState
     {
       
     }
-
     private void CubeMovement()
     {
-        _playerController.transform.position += Vector3.right * _playerController.SpeedValues[(int)_playerController.CurrentSpeed] * Time.deltaTime;
+        _playerController.transform.position += (Vector3.right * _playerController.CurrentSpeed) * Time.deltaTime;
     }
 
     private void Jump()
     {
         if (OnGround())
         {
-            Vector3 rotation = _playerController.Sprite.rotation.eulerAngles;
+            Vector3 rotation = _playerController.spriteTransform.rotation.eulerAngles;
             rotation.z = Mathf.Round(rotation.z / 90) * 90;
-            _playerController.Sprite.rotation = Quaternion.Euler(rotation);
+            _playerController.spriteTransform.rotation = Quaternion.Euler(rotation);
 
             if (Input.GetMouseButton(0))
             {
                 _playerController.Rigidbody.velocity = Vector2.zero;
-                _playerController.Rigidbody.AddForce(Vector2.up * 25.0f, ForceMode2D.Impulse);
+                _playerController.Rigidbody.AddForce(Vector2.up *25.0f, ForceMode2D.Impulse);
             }
         }
         else
         {
-            _playerController.Sprite.Rotate(Vector3.back * 250* Time.deltaTime);
+            _playerController.spriteTransform.Rotate(Vector3.back * 250* Time.deltaTime);
         }
     }
-    
+  
     private bool OnGround()
     {
         float boxHeight = _playerController.transform.localScale.y;
@@ -53,9 +51,7 @@ public class PlayerCubeMovementState : PlayerBaseState
         Vector2 boxSize = new Vector2(1.1f, _playerController.GroundCheckRadius * 2);
         return Physics2D.OverlapBox(boxCenter, boxSize, 0, _playerController.GroundMask);
     }
-
-
-
+    
     public override void OnTriggerEnter2D(Collider2D collision)
     {
         
@@ -67,6 +63,7 @@ public class PlayerCubeMovementState : PlayerBaseState
     public void CubeRespawn()
     {
         _playerController.transform.position = _playerController.CubeRespawnStartPosition;
+        _playerController.transform.rotation = Quaternion.identity;
     }
 }
 

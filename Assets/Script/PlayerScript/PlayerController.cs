@@ -6,42 +6,50 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 
-public enum Speeds { Slow = 0, Normal = 1, Fast = 2 }
 public class PlayerController : MonoBehaviour
-{   
-    public PlayerBaseState CurrentState;
-    public PlayerShipMovementState ShipMovementState = new PlayerShipMovementState();
-    public PlayerCubeMovementState CubeMovementState = new PlayerCubeMovementState();
-    public float MinY = 0;
-    public float MaxY = 1.50f;
-    public float JumpHeight = 3.0f;
-    public float ShipMovementSpeed = 3.0f;
-    public float[] SpeedValues = { 5.0f, 10.0f, 15.0f };
-    public Speeds CurrentSpeed;
-    public float GroundCheckRadius;
+{
+   
+    private PlayerBaseState _currentState;
+    private PlayerShipMovementState ShipMovementState = new PlayerShipMovementState();
+    private PlayerCubeMovementState CubeMovementState = new PlayerCubeMovementState();
+
+    private float _jumpHeight = 3.0f;
+    public float JumpHeight => _jumpHeight;
+
+    private float _shipMovementSpeed = 3.0f;
+    public float ShipMovementSpeed =>_shipMovementSpeed;
+
+    private float _groundCheckRadius =2.0f;
+    public float GroundCheckRadius => _groundCheckRadius;
+
+    private float _currentSpeed = 10.0f;
+    public  float CurrentSpeed => _currentSpeed;
+    
     public LayerMask GroundMask;
-    public Rigidbody2D Rigidbody;
-    public Transform Sprite;
     public Vector2 CubeRespawnStartPosition;
     public Vector2 ShipRespawnStartPosition;
+   
     private bool _changeSprite = false;
     private Vector3 _firstSpriteScaleValue;
     private SpriteRenderer _spriteRenderer;
     private Sprite _playerCubeSprite, _playerShipSprite;
 
+    internal Rigidbody2D Rigidbody;
+    internal Transform spriteTransform;
 
     private void Start()
     {
+        spriteTransform = GetComponent<Transform>();
         Rigidbody = GetComponent<Rigidbody2D>();
-        CurrentState = CubeMovementState;
-        CurrentState.EnterState(this);
+        _currentState = CubeMovementState;
+        _currentState.EnterState(this);
         EventsOnPlayerDestroyed();
         SpriteOperations();
 
     }
     private void Update()
     {
-        CurrentState.UpdateState(this);
+        _currentState.UpdateState(this);
     }
 
     private void EventsOnPlayerDestroyed()
@@ -59,23 +67,24 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("LoginPortal"))
         {
-            CurrentState.ExitState(this);
-            CurrentState = ShipMovementState;
-            CurrentState.EnterState(this);
+            _currentState.ExitState(this);
+            _currentState = ShipMovementState;
+            _currentState.EnterState(this);
             _changeSprite = true;
             ChangeSprite();
 
         }
         else if (collision.gameObject.CompareTag("ExitPortal"))
         {
-            CurrentState.ExitState(this);
-            CurrentState = CubeMovementState;
-            CurrentState.EnterState(this);
+            _currentState.ExitState(this);
+            _currentState = CubeMovementState;
+            _currentState.EnterState(this);
             _changeSprite = false;
             ChangeSprite();
+           
         }
 
-        CurrentState.OnTriggerEnter2D(collision);
+        _currentState.OnTriggerEnter2D(collision);
     }
 
 
@@ -116,6 +125,7 @@ public class PlayerController : MonoBehaviour
             _spriteRenderer.sprite = _playerShipSprite;
             _spriteRenderer.transform.localScale *= 0.5f;
             
+ 
             
         }
         else if (_changeSprite==false)

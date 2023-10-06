@@ -7,6 +7,7 @@ public class PlayerShipMovementState : PlayerBaseState
     public override void EnterState(PlayerController state)
     {
         _playerController = state;
+        _playerController.transform.rotation = Quaternion.identity;
         _playerController.Rigidbody.gravityScale = 0;
        
     }
@@ -43,7 +44,6 @@ public class PlayerShipMovementState : PlayerBaseState
     private void MoveShip(Vector3 direction)
     {
         Vector2 position = _playerController.transform.position + (Time.deltaTime * _playerController.ShipMovementSpeed * direction);
-        position.y = Mathf.Clamp(position.y, _playerController.MinY, _playerController.MaxY);
         _playerController.transform.position = position;
     }
 
@@ -70,6 +70,7 @@ public class PlayerShipMovementState : PlayerBaseState
     public void ShipRespawn()
     {
         _playerController.transform.position = _playerController.ShipRespawnStartPosition;
+        _playerController.transform.rotation = Quaternion.identity;
     }
 
 
