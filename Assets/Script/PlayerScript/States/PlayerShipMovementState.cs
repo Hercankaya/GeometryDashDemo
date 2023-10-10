@@ -9,6 +9,7 @@ public class PlayerShipMovementState : PlayerBaseState
         _playerController = state;
         _playerController.transform.rotation = Quaternion.identity;
         _playerController.Rigidbody.gravityScale = 0;
+        AddEvents();
        
     }
 
@@ -20,7 +21,16 @@ public class PlayerShipMovementState : PlayerBaseState
 
     public override void ExitState(PlayerController state)
     {
+        RemoveEvents();
+    }
+    private void AddEvents()
+    {
+     
+    }
 
+    private void RemoveEvents()
+    {
+       
     }
 
     private void ShipMovement()

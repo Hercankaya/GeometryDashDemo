@@ -1037,7 +1037,9 @@ GameObject:
   m_Component:
   - component: {fileID: 694641853}
   - component: {fileID: 694641855}
-  - component: {fileID: 694641856}
+  - component: {fileID: 694641857}
+  - component: {fileID: 694641858}
+  - component: {fileID: 694641859}
   m_Layer: 0
   m_Name: 'ExitPortal '
   m_TagString: ExitPortal
@@ -1112,8 +1114,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!68 &694641856
-EdgeCollider2D:
+--- !u!114 &694641857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 694641852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e2f2571dbcb74e488126096ab09b463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &694641858
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1126,17 +1140,31 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.6, y: 1.15}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.6, y: 1.15}
   m_EdgeRadius: 0
-  m_Points:
-  - {x: 0.054517083, y: 0.4893911}
-  - {x: 0.07102765, y: 0.45852962}
-  - {x: 0.04440614, y: 0.2900814}
-  - {x: 0.027026355, y: -0.14281172}
-  - {x: 0.027023092, y: -0.49113294}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
+--- !u!114 &694641859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 694641852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d109b3b5e2835e49bf36a1ccf2c9a91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _portalEventDispatcher: {fileID: 694641857}
 --- !u!1 &711253291
 GameObject:
   m_ObjectHideFlags: 0
@@ -1618,7 +1646,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1524678346}
   - component: {fileID: 1524678348}
-  - component: {fileID: 1524678349}
+  - component: {fileID: 1524678350}
+  - component: {fileID: 1524678351}
+  - component: {fileID: 1524678352}
   m_Layer: 0
   m_Name: LoginPortal
   m_TagString: LoginPortal
@@ -1693,8 +1723,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!68 &1524678349
-EdgeCollider2D:
+--- !u!114 &1524678350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1524678345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e2f2571dbcb74e488126096ab09b463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &1524678351
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1706,16 +1748,32 @@ EdgeCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.002033472}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.6, y: 1.15}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.6, y: 1.0889938}
   m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.016281072, y: 0.52542317}
-  - {x: 0.058051407, y: -0.036101945}
-  - {x: -0.013586465, y: -0.55306655}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
+--- !u!114 &1524678352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1524678345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d109b3b5e2835e49bf36a1ccf2c9a91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _portalEventDispatcher: {fileID: 1524678350}
 --- !u!1 &1663333198
 GameObject:
   m_ObjectHideFlags: 0
@@ -2054,7 +2112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1838108889}
   m_Layer: 0
-  m_Name: Portals
+  m_Name: PortalController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2677,7 +2735,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5696718708324508083, guid: 957e7eb83d8ae6e42b1c0194667fe606, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -21.73
+      value: -21.946
       objectReference: {fileID: 0}
     - target: {fileID: 5696718708324508083, guid: 957e7eb83d8ae6e42b1c0194667fe606, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2725,7 +2783,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5696718708324508087, guid: 957e7eb83d8ae6e42b1c0194667fe606, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5696718709126311133, guid: 957e7eb83d8ae6e42b1c0194667fe606, type: 3}
       propertyPath: m_IsActive
@@ -2810,6 +2868,10 @@ PrefabInstance:
     - target: {fileID: 7164475118544406261, guid: 957e7eb83d8ae6e42b1c0194667fe606, type: 3}
       propertyPath: GroundMask.m_Bits
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7164475118544406261, guid: 957e7eb83d8ae6e42b1c0194667fe606, type: 3}
+      propertyPath: _groundCheckRadius
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7164475118544406261, guid: 957e7eb83d8ae6e42b1c0194667fe606, type: 3}
       propertyPath: GroundCheckTransform

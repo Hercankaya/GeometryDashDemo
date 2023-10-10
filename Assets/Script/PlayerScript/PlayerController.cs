@@ -9,9 +9,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
    
-    private PlayerBaseState _currentState;
-    private PlayerShipMovementState ShipMovementState = new PlayerShipMovementState();
-    private PlayerCubeMovementState CubeMovementState = new PlayerCubeMovementState();
+    public PlayerBaseState _currentState;
+    public PlayerShipMovementState ShipMovementState = new PlayerShipMovementState();
+    public PlayerCubeMovementState CubeMovementState = new PlayerCubeMovementState();
 
     private float _jumpHeight = 3.0f;
     public float JumpHeight => _jumpHeight;
@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     private float _shipMovementSpeed = 3.0f;
     public float ShipMovementSpeed =>_shipMovementSpeed;
 
-    private float _groundCheckRadius =2.0f;
+    private float _groundCheckRadius =1f;
     public float GroundCheckRadius => _groundCheckRadius;
 
     private float _currentSpeed = 10.0f;
@@ -28,19 +28,26 @@ public class PlayerController : MonoBehaviour
     public LayerMask GroundMask;
     public Vector2 CubeRespawnStartPosition;
     public Vector2 ShipRespawnStartPosition;
-   
+
+    public bool IsChangeSprite { get => _changeSprite; set => _changeSprite = value;}
+
     private bool _changeSprite = false;
+
     private Vector3 _firstSpriteScaleValue;
     private SpriteRenderer _spriteRenderer;
     private Sprite _playerCubeSprite, _playerShipSprite;
 
-    internal Rigidbody2D Rigidbody;
-    internal Transform spriteTransform;
+    private Rigidbody2D _rigidbody;
+    public Rigidbody2D Rigidbody=>_rigidbody;
+
+    private Transform _spritTransform;
+    public Transform SpriteTransform => _spritTransform;
+    
 
     private void Start()
     {
-        spriteTransform = GetComponent<Transform>();
-        Rigidbody = GetComponent<Rigidbody2D>();
+        _spritTransform = GetComponent<Transform>();
+        _rigidbody = GetComponent<Rigidbody2D>();
         _currentState = CubeMovementState;
         _currentState.EnterState(this);
         EventsOnPlayerDestroyed();
@@ -62,32 +69,13 @@ public class PlayerController : MonoBehaviour
         CubeMovementState.DestroyedEvent -= OnCubeDestroyed;
         ShipMovementState.DestroyedEvent -= OnShipDestroyed;
     }
-
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("LoginPortal"))
-        {
-            _currentState.ExitState(this);
-            _currentState = ShipMovementState;
-            _currentState.EnterState(this);
-            _changeSprite = true;
-            ChangeSprite();
-
-        }
-        else if (collision.gameObject.CompareTag("ExitPortal"))
-        {
-            _currentState.ExitState(this);
-            _currentState = CubeMovementState;
-            _currentState.EnterState(this);
-            _changeSprite = false;
-            ChangeSprite();
-           
-        }
-
         _currentState.OnTriggerEnter2D(collision);
+     
     }
-
-
+    
     private void PlayDeathSound()
     {
         AudioManager.Instance.PlaySFX("DeathSound");
@@ -114,26 +102,55 @@ public class PlayerController : MonoBehaviour
         _spriteRenderer.sprite = _playerCubeSprite;
 
     }
-
-
-    
-    private void ChangeSprite()
+    public void ChangeSprite()
     {
-        if(_changeSprite == true)
+        if(_changeSprite )
         {
             _firstSpriteScaleValue = _spriteRenderer.transform.localScale;
             _spriteRenderer.sprite = _playerShipSprite;
             _spriteRenderer.transform.localScale *= 0.5f;
-            
- 
-            
+         
         }
-        else if (_changeSprite==false)
+        else 
         {
             _spriteRenderer.transform.localScale = _firstSpriteScaleValue;
             _spriteRenderer.sprite = _playerCubeSprite;
         }
     }
 
+    public void PortalEnter()
+    {
+        var isCurrentStateCubeMovement = _currentState == CubeMovementState;                        
 
+        _currentState.ExitState(this);
+        _currentState = isCurrentStateCubeMovement ? ShipMovementState : CubeMovementState;
+        _currentState.EnterState(this);
+        IsChangeSprite = isCurrentStateCubeMovement;
+        ChangeSprite();
+
+
+        /*
+        if(isCurrentStateCubeMovement)
+        {
+            _currentState = ShipMovementState;
+        }
+        else
+        {
+            _currentState = CubeMovementState;
+        }
+        
+
+        _currentState.ExitState(this);
+         _currentState = ShipMovementState;
+         _currentState.EnterState(this);
+         IsChangeSprite = true;
+         ChangeSprite();
+
+        _currentState.ExitState(this);
+        _currentState = CubeMovementState;
+        _currentState.EnterState(this);
+         IsChangeSprite = false;
+        ChangeSprite();
+        */
+    }
 }

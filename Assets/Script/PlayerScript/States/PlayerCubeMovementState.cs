@@ -7,7 +7,17 @@ public class PlayerCubeMovementState : PlayerBaseState
     public override void EnterState(PlayerController state)
     {
         _playerController = state;
-        _playerController.Rigidbody.gravityScale = 15; 
+        _playerController.Rigidbody.gravityScale = 15;
+        AddEvents();
+    }
+    private void AddEvents()
+    {
+       
+    }
+
+    private void RemoveEvents()
+    {
+      
     }
     public override void UpdateState(PlayerController state)
     {
@@ -17,7 +27,7 @@ public class PlayerCubeMovementState : PlayerBaseState
 
     public override void ExitState(PlayerController state)
     {
-      
+        RemoveEvents();
     }
     private void CubeMovement()
     {
@@ -28,9 +38,9 @@ public class PlayerCubeMovementState : PlayerBaseState
     {
         if (OnGround())
         {
-            Vector3 rotation = _playerController.spriteTransform.rotation.eulerAngles;
+            Vector3 rotation = _playerController.SpriteTransform.rotation.eulerAngles;
             rotation.z = Mathf.Round(rotation.z / 90) * 90;
-            _playerController.spriteTransform.rotation = Quaternion.Euler(rotation);
+            _playerController.SpriteTransform.rotation = Quaternion.Euler(rotation);
 
             if (Input.GetMouseButton(0))
             {
@@ -40,7 +50,7 @@ public class PlayerCubeMovementState : PlayerBaseState
         }
         else
         {
-            _playerController.spriteTransform.Rotate(Vector3.back * 250* Time.deltaTime);
+            _playerController.SpriteTransform.Rotate(Vector3.back * 450* Time.deltaTime);
         }
     }
   
