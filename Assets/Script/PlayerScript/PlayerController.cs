@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     private float _groundCheckRadius =1f;
     public float GroundCheckRadius => _groundCheckRadius;
 
-    private float _currentSpeed = 10.0f;
+    private float _currentSpeed = 15.0f;
     public  float CurrentSpeed => _currentSpeed;
     
     public LayerMask GroundMask;
@@ -97,8 +97,8 @@ public class PlayerController : MonoBehaviour
     private void SpriteOperations()
     {
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        _playerCubeSprite = Resources.Load<Sprite>("Sprites/CubePlayerSprite");
-        _playerShipSprite = Resources.Load<Sprite>("Sprites/ShipPlayerSprite");
+        _playerCubeSprite = Resources.Load<Sprite>("Sprites/PlayerSprites/CubePlayerSprite");
+        _playerShipSprite = Resources.Load<Sprite>("Sprites/PlayerSprites/ShipPlayerSprite");
         _spriteRenderer.sprite = _playerCubeSprite;
 
     }
