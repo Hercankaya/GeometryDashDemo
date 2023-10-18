@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private float _jumpHeight = 3.0f;
     public float JumpHeight => _jumpHeight;
 
-    private float _shipMovementSpeed = 3.0f;
+    private float _shipMovementSpeed = 10f;
     public float ShipMovementSpeed =>_shipMovementSpeed;
 
     private float _groundCheckRadius =1f;

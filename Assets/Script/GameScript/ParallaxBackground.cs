@@ -5,7 +5,6 @@ using UnityEngine;
 public class ParallaxBackground : MonoBehaviour
 {
 
-   // private float _backgroundSpeed = 0.5f;
     private float _offset;
     private Material _material;
     private CameraControllerScript _cameraControllerScript;
