@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class PlayerShipMovementState : PlayerBaseState
@@ -79,6 +80,7 @@ public class PlayerShipMovementState : PlayerBaseState
 
     public void ShipRespawn()
     {
+         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         _playerController.transform.position = _playerController.ShipRespawnStartPosition;
         _playerController.transform.rotation = Quaternion.identity;
     }

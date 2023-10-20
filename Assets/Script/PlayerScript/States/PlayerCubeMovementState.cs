@@ -1,9 +1,11 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class PlayerCubeMovementState : PlayerBaseState
 {
+  
     public override void EnterState(PlayerController state)
     {
         _playerController = state;
@@ -72,6 +74,7 @@ public class PlayerCubeMovementState : PlayerBaseState
     }
     public void CubeRespawn()
     {
+         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         _playerController.transform.position = _playerController.CubeRespawnStartPosition;
         _playerController.transform.rotation = Quaternion.identity;
     }
