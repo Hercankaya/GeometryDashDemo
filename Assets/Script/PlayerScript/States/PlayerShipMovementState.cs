@@ -39,7 +39,7 @@ public class PlayerShipMovementState : PlayerBaseState
         _playerController.transform.position += Vector3.right * _playerController.ShipMovementSpeed * Time.deltaTime;
         
     }
-
+    
     private void ShipMovementMaouseControl()
     {
         if (Input.GetMouseButton(0))
@@ -69,7 +69,7 @@ public class PlayerShipMovementState : PlayerBaseState
         Vector3 downDirection = Vector3.down;
         MoveShip(downDirection);
     }
-
+    
     public override void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("ShipObstacle") || collision.gameObject.CompareTag("ShipGround"))
