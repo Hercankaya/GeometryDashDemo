@@ -42,6 +42,20 @@ public class PlayerController : MonoBehaviour
 
     private Transform _spritTransform;
     public Transform SpriteTransform => _spritTransform;
+
+    private bool _playerLive = true;
+    public bool PlayerLive
+    {
+        get {
+                return _playerLive;
+
+            }
+
+        set {
+                _playerLive = value;
+
+            }
+    }
     
 
     private void Start()
@@ -85,12 +99,14 @@ public class PlayerController : MonoBehaviour
     {
         PlayDeathSound();
         CubeMovementState.CubeRespawn();
+        _playerLive = false;
     }
 
     private void OnShipDestroyed(object sender ,EventArgs e)
     {
         PlayDeathSound();
         ShipMovementState.ShipRespawn();
+        _playerLive = false;
 
     }
 
