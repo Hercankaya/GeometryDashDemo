@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour
         _currentState.EnterState(this);
         IsChangeSprite = isCurrentStateCubeMovement;
         ChangeSprite();
-
+        DestroyObjects();
 
         /*
         if(isCurrentStateCubeMovement)
@@ -168,5 +168,14 @@ public class PlayerController : MonoBehaviour
          IsChangeSprite = false;
         ChangeSprite();
         */
+    }
+
+    private void DestroyObjects()
+    {
+        GameObject nesne = GameObject.Find("CubeModeObjects"); 
+        if (nesne != null)
+        {
+            Destroy(nesne ,1f);
+        }
     }
 }

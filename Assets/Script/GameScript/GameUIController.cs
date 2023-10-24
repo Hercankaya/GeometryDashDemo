@@ -32,7 +32,7 @@ public class GameUIController : MonoBehaviour
             PauseGame();
         }
     }
-    private void PauseButton()
+    public void PauseButton()
     {
         if (PausePanel != null)
         {
@@ -45,7 +45,7 @@ public class GameUIController : MonoBehaviour
         }
     }
 
-    private void BackToGame()
+    public void BackToGame()
     {
         if (PausePanel != null)
         {
