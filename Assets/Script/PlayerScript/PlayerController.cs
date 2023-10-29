@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour
     private Transform _spritTransform;
     public Transform SpriteTransform => _spritTransform;
 
+
+   
     private bool _playerLive = true;
     public bool PlayerLive
     {
@@ -178,4 +180,5 @@ public class PlayerController : MonoBehaviour
             Destroy(nesne ,1f);
         }
     }
+
 }

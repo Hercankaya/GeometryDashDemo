@@ -10963,7 +10963,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 710538379}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.0438547, y: 2.2380838, z: -10}
+  m_LocalPosition: {x: 5.8803287, y: 2.2380838, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15067,7 +15067,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007922580}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -351.19998, y: -8.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -41780,19 +41780,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5696718708324508081, guid: 957e7eb83d8ae6e42b1c0194667fe606, type: 3}
       propertyPath: m_Size.x
-      value: 1.2272938
+      value: 1.2331543
       objectReference: {fileID: 0}
     - target: {fileID: 5696718708324508081, guid: 957e7eb83d8ae6e42b1c0194667fe606, type: 3}
       propertyPath: m_Size.y
-      value: 1.2857598
+      value: 1.2974806
       objectReference: {fileID: 0}
     - target: {fileID: 5696718708324508081, guid: 957e7eb83d8ae6e42b1c0194667fe606, type: 3}
       propertyPath: m_Offset.x
-      value: -0.17490262
+      value: -0.1719724
       objectReference: {fileID: 0}
     - target: {fileID: 5696718708324508081, guid: 957e7eb83d8ae6e42b1c0194667fe606, type: 3}
       propertyPath: m_Offset.y
-      value: 0.3441394
+      value: 0.338279
       objectReference: {fileID: 0}
     - target: {fileID: 5696718708324508082, guid: 957e7eb83d8ae6e42b1c0194667fe606, type: 3}
       propertyPath: m_BodyType
@@ -41808,7 +41808,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5696718708324508082, guid: 957e7eb83d8ae6e42b1c0194667fe606, type: 3}
       propertyPath: m_Constraints
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5696718708324508082, guid: 957e7eb83d8ae6e42b1c0194667fe606, type: 3}
       propertyPath: m_GravityScale

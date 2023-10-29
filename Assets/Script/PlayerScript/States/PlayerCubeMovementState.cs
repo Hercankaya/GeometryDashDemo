@@ -25,6 +25,7 @@ public class PlayerCubeMovementState : PlayerBaseState
     {
         CubeMovement();
         Jump();
+        
     }
 
     public override void ExitState(PlayerController state)
@@ -63,7 +64,7 @@ public class PlayerCubeMovementState : PlayerBaseState
         Vector2 boxSize = new Vector2(1.1f, _playerController.GroundCheckRadius * 2);
         return Physics2D.OverlapBox(boxCenter, boxSize, 0, _playerController.GroundMask);
     }
-    
+
     public override void OnTriggerEnter2D(Collider2D collision)
     {
         
@@ -77,6 +78,7 @@ public class PlayerCubeMovementState : PlayerBaseState
          SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         _playerController.transform.position = _playerController.CubeRespawnStartPosition;
         _playerController.transform.rotation = Quaternion.identity;
+        
     }
 }
 
