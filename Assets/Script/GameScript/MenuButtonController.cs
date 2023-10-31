@@ -1,26 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 
 public class MenuButtonController : MonoBehaviour
 {
     public GameObject Active;
 
-    public void GoToNextScene()
+    public void GoToGameScene()
     {
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        int nextSceneIndex = currentSceneIndex + 1;
-
-        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
-        {
-            SceneManager.LoadScene(nextSceneIndex);
-        }
-        else
-        {
-            Debug.LogError("Next scene not found!");
-        }
-
+        SceneManager.LoadScene("GameScene");
+    }
+    public void GoToCharacterSelectionScene()
+    {
+        SceneManager.LoadScene("CharacterSelectionScene");
+    }
+    public void BackToLoadingScene()
+    {
+        SceneManager.LoadScene("MenuScene");
     }
 
     public void SettingPanelActive()
