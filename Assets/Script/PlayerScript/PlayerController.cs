@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     private float _shipMovementSpeed = 10f;
     public float ShipMovementSpeed =>_shipMovementSpeed;
 
-    private float _groundCheckRadius =1f;
+    private float _groundCheckRadius =0.05f;
     public float GroundCheckRadius => _groundCheckRadius;
 
     private float _currentSpeed = 15.0f;
@@ -40,11 +40,18 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rigidbody;
     public Rigidbody2D Rigidbody=>_rigidbody;
 
-    private Transform _spritTransform;
-    public Transform SpriteTransform => _spritTransform;
+    
+
+    
+    private Transform _groundCheckTransform;
+    public Transform GroundCheckTransform => _groundCheckTransform;
 
 
-   
+    private Transform _spriteTransform;
+    public Transform SpriteTransform => _spriteTransform;
+
+
+
     private bool _playerLive = true;
     public bool PlayerLive
     {
@@ -62,12 +69,13 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        _spritTransform = GetComponent<Transform>();
+       
         _rigidbody = GetComponent<Rigidbody2D>();
         _currentState = CubeMovementState;
         _currentState.EnterState(this);
         EventsOnPlayerDestroyed();
         SpriteOperations();
+        GroundCheckOperations();
 
     }
     private void Update()
@@ -118,8 +126,13 @@ public class PlayerController : MonoBehaviour
         _playerCubeSprite = Resources.Load<Sprite>("Sprites/PlayerSprites/CubePlayerSprite");
         _playerShipSprite = Resources.Load<Sprite>("Sprites/PlayerSprites/ShipPlayerSprite");
         _spriteRenderer.sprite = _playerCubeSprite;
-
+        _spriteTransform = _spriteRenderer.transform;
     }
+    private void GroundCheckOperations()
+    {
+        _groundCheckTransform = transform.Find("GroundCheck");
+    }
+
     public void ChangeSprite()
     {
         if(_changeSprite )
