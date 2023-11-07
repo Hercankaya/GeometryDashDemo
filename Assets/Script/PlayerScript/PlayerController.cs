@@ -1,8 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -83,6 +79,8 @@ public class PlayerController : MonoBehaviour
         _currentState.UpdateState(this);
     }
 
+    
+
     private void EventsOnPlayerDestroyed()
     {
         CubeMovementState.DestroyedEvent += OnCubeDestroyed;
@@ -139,7 +137,7 @@ public class PlayerController : MonoBehaviour
         {
             _firstSpriteScaleValue = _spriteRenderer.transform.localScale;
             _spriteRenderer.sprite = _playerShipSprite;
-            _spriteRenderer.transform.localScale *= 0.5f;
+            _spriteTransform.transform.rotation= Quaternion.identity;
          
         }
         else 
@@ -190,7 +188,7 @@ public class PlayerController : MonoBehaviour
         GameObject nesne = GameObject.Find("CubeModeObjects"); 
         if (nesne != null)
         {
-            Destroy(nesne ,1f);
+            Destroy(nesne ,1.5f);
         }
     }
 

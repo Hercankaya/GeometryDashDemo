@@ -39,13 +39,13 @@ public class PlayerCubeMovementState : PlayerBaseState
 
     private void Jump()
     {
-        if (OnGround2())
+        if (OnGround())
         {
             Vector3 rotation = _playerController.SpriteTransform.rotation.eulerAngles;
             rotation.z = Mathf.Round(rotation.z / 180) * 180;
             _playerController.SpriteTransform.rotation = Quaternion.Euler(rotation);
 
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space))
             {
                 _playerController.Rigidbody.velocity = Vector2.zero;
                 _playerController.Rigidbody.AddForce(Vector2.up *30.0f, ForceMode2D.Impulse);
@@ -58,18 +58,11 @@ public class PlayerCubeMovementState : PlayerBaseState
     }
   
 
-    private bool OnGround2()
+    private bool OnGround()
     {
         return Physics2D.OverlapCircle(_playerController.GroundCheckTransform.position, _playerController.GroundCheckRadius, _playerController.GroundMask);
     }
-    private bool OnGround()
-    {
-        float boxHeight = _playerController.transform.localScale.y;
-        Vector3 boxCenter = _playerController.transform.position + Vector3.down * (boxHeight * 0.5f);
-        Vector2 boxSize = new Vector2(1.1f, _playerController.GroundCheckRadius * 2);
-        return Physics2D.OverlapBox(boxCenter, boxSize, 0, _playerController.GroundMask);
-    }
-
+  
     public override void OnTriggerEnter2D(Collider2D collision)
     {
         
