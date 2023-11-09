@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 
 public class PlayerShipMovementState : PlayerBaseState
@@ -12,15 +13,13 @@ public class PlayerShipMovementState : PlayerBaseState
         _playerController.Rigidbody.gravityScale = 0;
         AddEvents();
 
-
-
     }
 
     public override void UpdateState(PlayerController state)
     {
-        ShipMovement();
-        ShipMovementMaouseControl();
-       
+         ShipMovement();
+         ShipMovementMaouseControl();
+        
 
     }
 
@@ -37,43 +36,27 @@ public class PlayerShipMovementState : PlayerBaseState
     {
        
     }
-
+    
     private void ShipMovement()
     {
         _playerController.transform.position += Vector3.right * _playerController.ShipMovementSpeed * Time.deltaTime;
         
     }
-
+    
     private void ShipMovementMaouseControl()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space))
         {
-            ShipPositionUp();
+            _playerController.Rigidbody.gravityScale = -3;
         }
         else
         {
-            ShipPositionDown();
+            _playerController.Rigidbody.gravityScale = 3;
         }
+        var targetRotation = Quaternion.Euler(0, 0, _playerController.Rigidbody.velocity.y * 2);
+        _playerController.transform.localRotation = Quaternion.Slerp(_playerController.transform.localRotation, targetRotation, Time.deltaTime * 6);
     }
 
-    private void MoveShip(Vector3 direction)
-    {
-        Vector2 position = _playerController.transform.position + (Time.deltaTime * _playerController.ShipMovementSpeed * direction);
-        _playerController.transform.position = position;
-    }
-
-    private void ShipPositionUp()
-    {
-        Vector3 upDirection = Vector3.up * _playerController.JumpHeight;
-        MoveShip(upDirection);
-    }
-
-    private void ShipPositionDown()
-    {
-        Vector3 downDirection = Vector3.down;
-        MoveShip(downDirection);
-    }
-   
     public override void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("ShipObstacle") || collision.gameObject.CompareTag("ShipGround"))
@@ -88,7 +71,5 @@ public class PlayerShipMovementState : PlayerBaseState
         _playerController.transform.position = _playerController.ShipRespawnStartPosition;
         _playerController.transform.rotation = Quaternion.identity;
     }
-
-    
 
 }

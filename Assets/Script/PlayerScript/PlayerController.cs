@@ -8,46 +8,26 @@ public class PlayerController : MonoBehaviour
     public PlayerBaseState _currentState;
     public PlayerShipMovementState ShipMovementState = new PlayerShipMovementState();
     public PlayerCubeMovementState CubeMovementState = new PlayerCubeMovementState();
-
-    private float _jumpHeight = 3.0f;
-    public float JumpHeight => _jumpHeight;
-
     private float _shipMovementSpeed = 10f;
     public float ShipMovementSpeed =>_shipMovementSpeed;
-
     private float _groundCheckRadius =0.05f;
     public float GroundCheckRadius => _groundCheckRadius;
-
     private float _currentSpeed = 15.0f;
     public  float CurrentSpeed => _currentSpeed;
-    
     public LayerMask GroundMask;
     public Vector2 CubeRespawnStartPosition;
     public Vector2 ShipRespawnStartPosition;
-
     public bool IsChangeSprite { get => _changeSprite; set => _changeSprite = value;}
-
     private bool _changeSprite = false;
-
     private Vector3 _firstSpriteScaleValue;
     private SpriteRenderer _spriteRenderer;
     private Sprite _playerCubeSprite, _playerShipSprite;
-
     private Rigidbody2D _rigidbody;
     public Rigidbody2D Rigidbody=>_rigidbody;
-
-    
-
-    
     private Transform _groundCheckTransform;
     public Transform GroundCheckTransform => _groundCheckTransform;
-
-
     private Transform _spriteTransform;
     public Transform SpriteTransform => _spriteTransform;
-
-
-
     private bool _playerLive = true;
     public bool PlayerLive
     {
