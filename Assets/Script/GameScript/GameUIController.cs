@@ -12,8 +12,7 @@ public class GameUIController : MonoBehaviour
     public Transform EndPoint;
     private Transform _playerTransform;
     private float _totalDistance;
-
-    
+ 
     private void Start()
     {
         PlayerController playerController = FindObjectOfType<PlayerController>();
@@ -32,7 +31,6 @@ public class GameUIController : MonoBehaviour
             PauseGame();
         }
 
-       LineMovement();
     }
     public void PauseButton()
     {
@@ -62,16 +60,6 @@ public class GameUIController : MonoBehaviour
     private void PauseGame()
     {
         Time.timeScale = 0f;
-    }
-
-
-    private void LineMovement()
-    {
-        Vector2 newLightPosition = GroundLightTransform.position;
-        newLightPosition.x = _playerTransform.position.x + 1.70f ;
-        GroundLightTransform.position = newLightPosition;
-
-
     }
 
 }

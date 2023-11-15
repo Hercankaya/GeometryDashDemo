@@ -35,6 +35,7 @@ public class PlayerCubeMovementState : PlayerBaseState
     private void CubeMovement()
     {
         _playerController.transform.position += (Vector3.right * _playerController.CurrentSpeed) * Time.deltaTime;
+       // LineMovement();
     }
 
     private void Jump()
@@ -78,6 +79,15 @@ public class PlayerCubeMovementState : PlayerBaseState
         _playerController.transform.rotation = Quaternion.identity;
         
     }
+    /*
+    private void LineMovement()
+    {
+        Vector2 newLightPosition = _playerController.GroundLightTransform.position;
+        newLightPosition.x = _playerController.transform.position.x + 1.70f;
+        _playerController.GroundLightTransform.position = newLightPosition;
+
+    }
+    */
 }
 
 

@@ -13,14 +13,14 @@ public class ColorChange : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private bool _isTransitioning = true;
 
-    void Start()
+    private void Start()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _spriteRenderer.color = _startColor;
         _startTime = Time.time;
     }
 
-    void Update()
+    private void Update()
     {
         if (_isTransitioning)
         {

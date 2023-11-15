@@ -1,6 +1,14 @@
 using System;
 using UnityEngine;
 
+[Serializable]
+public class PlayerTransformData
+{
+    public Vector3 position;
+    public Quaternion rotation;
+    public Vector3 scale;
+}
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,6 +19,8 @@ public class PlayerController : MonoBehaviour
     private float _shipMovementSpeed = 10f;
     public float ShipMovementSpeed =>_shipMovementSpeed;
     private float _groundCheckRadius =0.05f;
+    public float JumpHeight =>_jumpHeight;
+    private float _jumpHeight = 0.3f;
     public float GroundCheckRadius => _groundCheckRadius;
     private float _currentSpeed = 15.0f;
     public  float CurrentSpeed => _currentSpeed;
@@ -41,7 +51,8 @@ public class PlayerController : MonoBehaviour
 
             }
     }
-    
+
+    public Transform GroundLightTransform;
 
     private void Start()
     {
@@ -57,10 +68,8 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         _currentState.UpdateState(this);
+        
     }
-
-    
-
     private void EventsOnPlayerDestroyed()
     {
         CubeMovementState.DestroyedEvent += OnCubeDestroyed;
@@ -111,7 +120,7 @@ public class PlayerController : MonoBehaviour
         _groundCheckTransform = transform.Find("GroundCheck");
     }
 
-    public void ChangeSprite()
+    private void ChangeSprite()
     {
         if(_changeSprite )
         {
@@ -136,7 +145,6 @@ public class PlayerController : MonoBehaviour
         _currentState.EnterState(this);
         IsChangeSprite = isCurrentStateCubeMovement;
         ChangeSprite();
-        DestroyObjects();
 
         /*
         if(isCurrentStateCubeMovement)
@@ -161,15 +169,6 @@ public class PlayerController : MonoBehaviour
          IsChangeSprite = false;
         ChangeSprite();
         */
-    }
-
-    private void DestroyObjects()
-    {
-        GameObject nesne = GameObject.Find("CubeModeObjects"); 
-        if (nesne != null)
-        {
-            Destroy(nesne ,1.5f);
-        }
     }
 
 }
