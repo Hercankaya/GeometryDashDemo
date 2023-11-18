@@ -21,6 +21,7 @@ public class ParallaxBackground : MonoBehaviour
             float smoothSpeed = _cameraControllerScript.SmoothSpeed;
             _offset += (Time.deltaTime * smoothSpeed) / 50f;
             _material.SetTextureOffset("_MainTex", new Vector2(_offset, 0));
+          
         }
         
     }

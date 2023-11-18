@@ -12,6 +12,7 @@ TagManager:
   - ShipObstacle
   - CubeObstacle
   - ShipGround
+  - Camera
   layers:
   - Default
   - TransparentFX

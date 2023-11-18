@@ -53,7 +53,8 @@ public class PlayerController : MonoBehaviour
     }
 
     public Transform GroundLightTransform;
-
+    public bool PlayerStatusCheck => _playerStatusCheck;
+    private bool _playerStatusCheck = false;
     private void Start()
     {
        
@@ -84,7 +85,7 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         _currentState.OnTriggerEnter2D(collision);
-     
+        
     }
     
     private void PlayDeathSound()
@@ -127,48 +128,27 @@ public class PlayerController : MonoBehaviour
             _firstSpriteScaleValue = _spriteRenderer.transform.localScale;
             _spriteRenderer.sprite = _playerShipSprite;
             _spriteTransform.transform.rotation= Quaternion.identity;
-         
+            
         }
         else 
         {
             _spriteRenderer.transform.localScale = _firstSpriteScaleValue;
             _spriteRenderer.sprite = _playerCubeSprite;
+           
         }
     }
 
     public void PortalEnter()
     {
-        var isCurrentStateCubeMovement = _currentState == CubeMovementState;                        
-
+        var isCurrentStateCubeMovement = _currentState == CubeMovementState;
         _currentState.ExitState(this);
         _currentState = isCurrentStateCubeMovement ? ShipMovementState : CubeMovementState;
+        _playerStatusCheck = isCurrentStateCubeMovement;
         _currentState.EnterState(this);
         IsChangeSprite = isCurrentStateCubeMovement;
         ChangeSprite();
-
-        /*
-        if(isCurrentStateCubeMovement)
-        {
-            _currentState = ShipMovementState;
-        }
-        else
-        {
-            _currentState = CubeMovementState;
-        }
         
 
-        _currentState.ExitState(this);
-         _currentState = ShipMovementState;
-         _currentState.EnterState(this);
-         IsChangeSprite = true;
-         ChangeSprite();
-
-        _currentState.ExitState(this);
-        _currentState = CubeMovementState;
-        _currentState.EnterState(this);
-         IsChangeSprite = false;
-        ChangeSprite();
-        */
     }
 
 }

@@ -1,13 +1,11 @@
+using JetBrains.Annotations;
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEngine.RuleTile.TilingRuleOutput;
-
-
 
 public class PlayerShipMovementState : PlayerBaseState
 {
+
     public override void EnterState(PlayerController state)
     {
         _playerController = state;
@@ -33,8 +31,7 @@ public class PlayerShipMovementState : PlayerBaseState
 
     private void RemoveEvents()
     {
-      
-
+        
     }
     
     private void ShipMovement()
@@ -65,7 +62,7 @@ public class PlayerShipMovementState : PlayerBaseState
     {
         float currentZ = _playerController.SpriteTransform.rotation.z;
 
-        if (currentZ <= 0.3f) 
+        if (currentZ <= 0.2f) 
         {
             _playerController.SpriteTransform.Rotate(Vector3.forward * 200 * Time.deltaTime);
         }
@@ -77,7 +74,7 @@ public class PlayerShipMovementState : PlayerBaseState
     {
         float currentZ = _playerController.SpriteTransform.rotation.z;
 
-        if (currentZ >= -0.3f)
+        if (currentZ >= -0.2f)
         {
             _playerController.SpriteTransform.Rotate(Vector3.back * 150 * Time.deltaTime);
         }
