@@ -1,11 +1,11 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEngine.RuleTile.TilingRuleOutput;
+
 
 public class PlayerCubeMovementState : PlayerBaseState
 {
-  
+    public CameraControllerScript mainCamera;
     public override void EnterState(PlayerController state)
     {
         _playerController = state;
@@ -63,18 +63,19 @@ public class PlayerCubeMovementState : PlayerBaseState
     {
         return Physics2D.OverlapCircle(_playerController.GroundCheckTransform.position, _playerController.GroundCheckRadius, _playerController.GroundMask);
     }
-  
-    public override void OnTriggerEnter2D(Collider2D collision)
-    {
-        
-         if (collision.gameObject.CompareTag("CubeObstacle"))
-        {
-            DestroyedEvent?.Invoke(this, EventArgs.Empty);
-        }
-    }
+    
+      public override void OnTriggerEnter2D(Collider2D collision)
+      {
+
+           if (collision.gameObject.CompareTag("CubeObstacle"))
+          {
+              DestroyedEvent?.Invoke(this, EventArgs.Empty);
+          }
+      }
+
     public void CubeRespawn()
     {
-         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         _playerController.transform.position = _playerController.CubeRespawnStartPosition;
         _playerController.transform.rotation = Quaternion.identity;
         

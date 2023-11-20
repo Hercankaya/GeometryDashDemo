@@ -1,15 +1,6 @@
 using System;
 using UnityEngine;
 
-[Serializable]
-public class PlayerTransformData
-{
-    public Vector3 position;
-    public Quaternion rotation;
-    public Vector3 scale;
-}
-
-
 public class PlayerController : MonoBehaviour
 {
    
@@ -147,8 +138,5 @@ public class PlayerController : MonoBehaviour
         _currentState.EnterState(this);
         IsChangeSprite = isCurrentStateCubeMovement;
         ChangeSprite();
-        
-
     }
-
 }

@@ -7,9 +7,9 @@ public class MenuButtonController : MonoBehaviour
 {
     public GameObject Active;
 
-    public void GoToGameScene()
+    public void GoToGameLevelSelectionScene()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("LevelSelectionScene");
     }
     public void GoToCharacterSelectionScene()
     {

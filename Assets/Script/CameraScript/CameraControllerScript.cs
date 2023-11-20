@@ -13,7 +13,6 @@ public class CameraControllerScript : MonoBehaviour
     private PlayerController _playerController;
     public CinemachineVirtualCamera virtualCamera;
 
-
     private void Start()
     {
         _playerController = FindObjectOfType<PlayerController>();
@@ -23,7 +22,7 @@ public class CameraControllerScript : MonoBehaviour
             virtualCamera = GetComponent<CinemachineVirtualCamera>();
         }
     }
-    private void LateUpdate()
+    private void Update()
     {
         if (_playerController == null)
         {

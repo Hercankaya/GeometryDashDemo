@@ -12,25 +12,30 @@ public class GameUIController : MonoBehaviour
     public Transform EndPoint;
     private Transform _playerTransform;
     private float _totalDistance;
- 
+    PlayerController _playerController;
+    public float Progress => _progress;
+    private float _progress;
+
     private void Start()
     {
-        PlayerController playerController = FindObjectOfType<PlayerController>();
-        _playerTransform = playerController.transform;
+        _playerController = FindObjectOfType<PlayerController>();
+        _playerTransform = _playerController.transform;
         _totalDistance = Vector3.Distance(StartPoint.position, EndPoint.position);
+        
     }
 
     private void Update()
     {
         float distanceToGoal = Vector3.Distance(_playerTransform.position, EndPoint.position);
-        float progress = 1f - (distanceToGoal / _totalDistance);
-        ProgressBar.value = progress;
+        _progress = 1f - (distanceToGoal / _totalDistance);
+        ProgressBar.value = _progress;
 
-        if (progress >= 0.999f)
+        if (_progress >= 0.999f)
         {
             PauseGame();
         }
 
+       // Debug.Log("Progress: " + (_progress * 100f).ToString("F2") + "%");
     }
     public void PauseButton()
     {
@@ -61,5 +66,6 @@ public class GameUIController : MonoBehaviour
     {
         Time.timeScale = 0f;
     }
-
+   
 }
+
