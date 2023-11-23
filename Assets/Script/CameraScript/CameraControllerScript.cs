@@ -1,5 +1,4 @@
 using Cinemachine;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 
@@ -38,10 +37,13 @@ public class CameraControllerScript : MonoBehaviour
             CameraXposition();
         
         }
+        
         else if (_playerController.PlayerStatusCheck == true)
         {
             CameraXposition();
-            virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_YDamping = 20f;
+            virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_DeadZoneHeight = 2f;
+            virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_SoftZoneHeight = 2f;
+            virtualCamera.m_Lens.OrthographicSize =9;
         }
     }
 
