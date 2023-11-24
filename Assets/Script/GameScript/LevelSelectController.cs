@@ -1,10 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;  // Ekle
+using TMPro;  
 using System.IO;
 using UnityEngine.SceneManagement;
 
-// Diðer using ifadeleri
 
 public class LevelSelectController : MonoBehaviour
 {
@@ -51,19 +50,21 @@ public class LevelSelectController : MonoBehaviour
             Debug.LogError("ProgressData okunurken hata oluþtu: " + e.Message);
         }
     }
-
     private void GameScene()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("GameScene1");
+    } 
+    public void GameSceneTwo()
+    {
+        SceneManager.LoadScene("GameScene2");
+    }
+    public void GameSceneThree()
+    {
+        SceneManager.LoadScene("GameScene3");
     }
     public void MenuScene()
     {
         SceneManager.LoadScene("MenuScene");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }
