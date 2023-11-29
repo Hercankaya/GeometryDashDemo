@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -36,7 +35,15 @@ public class PlayerShipMovementState : PlayerBaseState
     
     private void ShipMovement()
     {
-        _playerController.transform.position += Vector3.right * _playerController.ShipMovementSpeed * Time.deltaTime;
+        if (_playerController.PlayerLive == true)
+        {
+            _playerController.transform.position += Vector3.right * _playerController.ShipMovementSpeed * Time.deltaTime;
+        }
+        else if(_playerController.PlayerLive == false) 
+        {
+            _playerController.transform.position = _playerController.transform.position;
+        }
+       
     }
     
     private void ShipMovementMaouseControl()

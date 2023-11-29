@@ -18,8 +18,8 @@ public class PlayerController : MonoBehaviour
     public LayerMask GroundMask;
     public Vector2 CubeRespawnStartPosition;
     public Vector2 ShipRespawnStartPosition;
-    public bool IsChangeSprite { get => _changeSprite; set => _changeSprite = value;}
     private bool _changeSprite = false;
+    public bool IsChangeSprite { get => _changeSprite; set => _changeSprite = value;}
     private Vector3 _firstSpriteScaleValue;
     private SpriteRenderer _spriteRenderer;
     private Sprite _playerCubeSprite, _playerShipSprite;
@@ -29,23 +29,13 @@ public class PlayerController : MonoBehaviour
     public Transform GroundCheckTransform => _groundCheckTransform;
     private Transform _spriteTransform;
     public Transform SpriteTransform => _spriteTransform;
-    private bool _playerLive = true;
-    public bool PlayerLive
-    {
-        get {
-                return _playerLive;
-
-            }
-
-        set {
-                _playerLive = value;
-
-            }
-    }
-
-    public Transform GroundLightTransform;
     public bool PlayerStatusCheck => _playerStatusCheck;
     private bool _playerStatusCheck = false;
+    private bool _playerLive = true;
+    public bool PlayerLive { get => _playerLive; set => _playerLive = value; }
+    public Transform GroundLightTransform;
+   
+     
     private void Start()
     {
        
@@ -78,7 +68,7 @@ public class PlayerController : MonoBehaviour
         _currentState.OnTriggerEnter2D(collision);
         
     }
-    
+
     private void PlayDeathSound()
     {
         AudioManager.Instance.PlaySFX("DeathSound");
@@ -87,18 +77,26 @@ public class PlayerController : MonoBehaviour
     private void OnCubeDestroyed(object sender, EventArgs e)
     {
         PlayDeathSound();
-        CubeMovementState.CubeRespawn();
+        Invoke("RespawnCube", 1f);
         _playerLive = false;
     }
 
     private void OnShipDestroyed(object sender ,EventArgs e)
     {
         PlayDeathSound();
-        ShipMovementState.ShipRespawn();
+        Invoke("RespawnShip", 1f);
         _playerLive = false;
 
     }
 
+    private void RespawnCube()
+    {
+        CubeMovementState.CubeRespawn();
+    }
+    private void RespawnShip()
+    {
+        ShipMovementState.ShipRespawn();
+    }
     private void SpriteOperations()
     {
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();

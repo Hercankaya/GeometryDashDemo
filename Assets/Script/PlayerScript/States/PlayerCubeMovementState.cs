@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerCubeMovementState : PlayerBaseState
 {
-    public CameraControllerScript mainCamera;
     public override void EnterState(PlayerController state)
     {
         _playerController = state;
@@ -15,11 +14,13 @@ public class PlayerCubeMovementState : PlayerBaseState
     private void AddEvents()
     {
        
+
     }
 
     private void RemoveEvents()
     {
       
+
     }
     public override void UpdateState(PlayerController state)
     {
@@ -34,8 +35,16 @@ public class PlayerCubeMovementState : PlayerBaseState
     }
     private void CubeMovement()
     {
-        _playerController.transform.position += (Vector3.right * _playerController.CurrentSpeed) * Time.deltaTime;
-         LineMovement();
+        if(_playerController.PlayerLive == true) 
+        {
+            _playerController.transform.position += (Vector3.right * _playerController.CurrentSpeed) * Time.deltaTime;
+            LineMovement();
+        }
+        else if (_playerController.PlayerLive == false)
+        {
+            _playerController.transform.position = _playerController.transform.position;
+        }
+      
     }
 
     private void Jump()
@@ -75,12 +84,11 @@ public class PlayerCubeMovementState : PlayerBaseState
 
     public void CubeRespawn()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         _playerController.transform.position = _playerController.CubeRespawnStartPosition;
         _playerController.transform.rotation = Quaternion.identity;
         
     }
-    
     private void LineMovement()
     {
         Vector2 newLightPosition = _playerController.GroundLightTransform.position;

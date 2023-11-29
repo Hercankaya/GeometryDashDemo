@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class GameUIController : MonoBehaviour
 {
-    public Transform GroundLightTransform;
     public GameObject PausePanel;
     public Slider ProgressBar; 
     public Transform StartPoint;      
@@ -34,8 +33,6 @@ public class GameUIController : MonoBehaviour
         {
             PauseGame();
         }
-
-       // Debug.Log("Progress: " + (_progress * 100f).ToString("F2") + "%");
     }
     public void PauseButton()
     {

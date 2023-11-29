@@ -429,7 +429,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -891.49664, y: 437}
+  m_AnchoredPosition: {x: -891.49664, y: 371}
   m_SizeDelta: {x: 105.6339, y: 108.8211}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &76651509
@@ -1378,7 +1378,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6.1
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2092,8 +2092,8 @@ MonoBehaviour:
   MaxPage: 3
   PageStep: {x: -1920, y: 0, z: 0}
   LevelPagesRect: {fileID: 195644902}
-  tweenTime: 0.5
-  tweenType: 7
+  TweenTime: 0.3
+  TweenType: 6
 --- !u!1 &1245970243
 GameObject:
   m_ObjectHideFlags: 0

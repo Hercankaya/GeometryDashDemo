@@ -15,6 +15,7 @@ public class CameraControllerScript : MonoBehaviour
     private void Start()
     {
         _playerController = FindObjectOfType<PlayerController>();
+        
 
         if (virtualCamera == null)
         {
@@ -28,16 +29,16 @@ public class CameraControllerScript : MonoBehaviour
             return;
 
         }
-        if (_playerController .PlayerStatusCheck == false)
+        if (_playerController .PlayerStatusCheck == false )
         {
             if (PlayerTarget == null)
             {
                 return;
             }
             CameraXposition();
-        
+
         }
-        
+
         else if (_playerController.PlayerStatusCheck == true)
         {
             CameraXposition();
