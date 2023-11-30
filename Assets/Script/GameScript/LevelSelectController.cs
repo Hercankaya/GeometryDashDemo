@@ -9,18 +9,18 @@ public class LevelSelectController : MonoBehaviour
 {
     public Slider CompletedLevelProgressBar;
     public TextMeshProUGUI progressText; 
-    private string jsonFileName = "progressData.json";
+    private string _jsonFileName = "progressData.json";
 
-    void Start()
+    private void Start()
     {
         LoadProgressData();
     }
-    void LoadProgressData()
+    private void LoadProgressData()
     {
         try
         {
             
-            string jsonPath = Path.Combine(Application.dataPath, jsonFileName);
+            string jsonPath = Path.Combine(Application.dataPath, _jsonFileName);
             if (File.Exists(jsonPath))
             {
                 string json = File.ReadAllText(jsonPath);

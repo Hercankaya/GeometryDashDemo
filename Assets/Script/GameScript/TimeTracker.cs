@@ -8,13 +8,13 @@ public class TimeTracker : MonoBehaviour
     private float _startTime = -1;
     private TextMeshProUGUI _timeText;
 
-    void Start()
+    private void Start()
     {
         _playerController = FindObjectOfType<PlayerController>();
         _timeText = GameObject.Find("GameUI/PauseButton/PausePanel/TimeText").GetComponent<TextMeshProUGUI>();
     }
 
-    void Update()
+    private void Update()
     {
         if (_playerController != null && _playerController.PlayerLive)
         {
@@ -29,7 +29,7 @@ public class TimeTracker : MonoBehaviour
         }
     }
 
-    string FormatTime(float timeInSeconds)
+    private string FormatTime(float timeInSeconds)
     {
         int minutes = Mathf.FloorToInt(timeInSeconds / 60);
         int seconds = Mathf.FloorToInt(timeInSeconds % 60);

@@ -1,20 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ParallaxBackground : MonoBehaviour
 {
-
     private float _offset;
     private Material _material;
     private CameraControllerScript _cameraControllerScript;
 
-    void Start()
+   private void Start()
     {
         _material = GetComponent<Renderer>().material;   
         _cameraControllerScript = FindObjectOfType<CameraControllerScript>();
     }
-    void Update()
+   private void Update()
     {
         if (_cameraControllerScript != null)
         {

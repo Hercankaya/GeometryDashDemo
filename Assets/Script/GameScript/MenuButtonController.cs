@@ -7,25 +7,25 @@ public class MenuButtonController : MonoBehaviour
 {
     public GameObject Active;
 
-    public void GoToGameLevelSelectionScene()
+    private void GoToGameLevelSelectionScene()
     {
         SceneManager.LoadScene("LevelSelectionScene");
     }
-    public void GoToCharacterSelectionScene()
+    private void GoToCharacterSelectionScene()
     {
         SceneManager.LoadScene("CharacterSelectionScene");
     }
-    public void BackToLoadingScene()
+    private void BackToLoadingScene()
     {
         SceneManager.LoadScene("MenuScene");
     }
 
-    public void SettingPanelActive()
+    private void SettingPanelActive()
     {
         this.enabled = true;
         Active.SetActive(true);
     }
-    public void SettingPanelDeactive()
+    private void SettingPanelDeactive()
     {
         this.enabled = false;
         Active.SetActive(false);

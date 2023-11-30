@@ -43,6 +43,7 @@ public class PlayerCubeMovementState : PlayerBaseState
         else if (_playerController.PlayerLive == false)
         {
             _playerController.transform.position = _playerController.transform.position;
+            _playerController.DeathParticles.Play();
         }
       
     }

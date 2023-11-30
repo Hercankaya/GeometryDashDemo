@@ -40,7 +40,7 @@ public class JsonManager : MonoBehaviour
         {
             string json = JsonUtility.ToJson(myData);
             File.WriteAllText(Path.Combine(Application.dataPath, jsonFileName), json);
-            Debug.Log("ProgressData baþarýyla kaydedildi. Yüzde: " + myData.ProgressPercentage);
+           // Debug.Log("ProgressData baþarýyla kaydedildi. Yüzde: " + myData.ProgressPercentage);
         }
         catch (System.Exception e)
         {

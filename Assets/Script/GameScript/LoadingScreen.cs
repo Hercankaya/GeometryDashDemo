@@ -5,7 +5,7 @@ using System.Collections;
 
 public class LoadingScreen : MonoBehaviour
 {
-    public Slider loadingSlider; 
+    public Slider LoadingSlider; 
     private float _loadDelay = 5f; 
     private string _nextSceneName = "MenuScene"; 
 
@@ -22,7 +22,7 @@ public class LoadingScreen : MonoBehaviour
         while (!asyncLoad.isDone)
         {
             float progress = Mathf.Clamp01(asyncLoad.progress / 0.9f); 
-            loadingSlider.value = progress;
+            LoadingSlider.value = progress;
             yield return new WaitForEndOfFrame(); 
        
         }

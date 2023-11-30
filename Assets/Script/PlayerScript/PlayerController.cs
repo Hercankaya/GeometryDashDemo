@@ -34,11 +34,10 @@ public class PlayerController : MonoBehaviour
     private bool _playerLive = true;
     public bool PlayerLive { get => _playerLive; set => _playerLive = value; }
     public Transform GroundLightTransform;
-   
-     
+    public ParticleSystem DeathParticles;
     private void Start()
     {
-       
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _rigidbody = GetComponent<Rigidbody2D>();
         _currentState = CubeMovementState;
         _currentState.EnterState(this);
@@ -77,7 +76,8 @@ public class PlayerController : MonoBehaviour
     private void OnCubeDestroyed(object sender, EventArgs e)
     {
         PlayDeathSound();
-        Invoke("RespawnCube", 1f);
+        Invoke("RespawnCube",1);
+        gameObject.SetActive(false);
         _playerLive = false;
     }
 
@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour
     {
         PlayDeathSound();
         Invoke("RespawnShip", 1f);
+        gameObject.SetActive(false);
         _playerLive = false;
 
     }
@@ -99,7 +100,6 @@ public class PlayerController : MonoBehaviour
     }
     private void SpriteOperations()
     {
-        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _playerCubeSprite = Resources.Load<Sprite>("Sprites/PlayerSprites/CubePlayerSprite");
         _playerShipSprite = Resources.Load<Sprite>("Sprites/PlayerSprites/ShipPlayerSprite");
         _spriteRenderer.sprite = _playerCubeSprite;

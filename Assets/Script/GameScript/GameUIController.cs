@@ -11,16 +11,15 @@ public class GameUIController : MonoBehaviour
     public Transform EndPoint;
     private Transform _playerTransform;
     private float _totalDistance;
-    PlayerController _playerController;
     public float Progress => _progress;
     private float _progress;
 
+    PlayerController _playerController;
     private void Start()
     {
         _playerController = FindObjectOfType<PlayerController>();
         _playerTransform = _playerController.transform;
         _totalDistance = Vector3.Distance(StartPoint.position, EndPoint.position);
-        
     }
 
     private void Update()
@@ -34,7 +33,7 @@ public class GameUIController : MonoBehaviour
             PauseGame();
         }
     }
-    public void PauseButton()
+    private void PauseButton()
     {
         if (PausePanel != null)
         {
@@ -47,7 +46,7 @@ public class GameUIController : MonoBehaviour
         }
     }
 
-    public void BackToGame()
+    private void BackToGame()
     {
         if (PausePanel != null)
         {
